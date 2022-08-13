@@ -1,0 +1,38 @@
+<div class="container">
+  <app-add-contact></app-add-contact>
+  <ul class="collection with-header"  *ngIf="contacts!.length > 0;else noContacts">
+    <li class="collection-item collection-header"> Listes Des Contacs !</li>
+     <li class="collection-item" *ngFor="let item of contacts ">
+
+
+ <div class="s12 col">
+  <strong>  {{ item.name}}</strong> : {{ item.telephone}}
+  <button class="btn secondary-content" (click)="editContact(item)" ><i class="fa fa-pencil"></i></button>
+ </div>
+    <div class="s12 col" *ngIf="statusContact && item.id === myContact.id" >
+     <div class="row">
+       <div class="col s12 m6 input-field">
+         <i class="fa fa-user prefix"></i>
+         <input type="text" name="name" [(ngModel)]="item.name">
+
+       </div>
+       <div class="col s12 m6 input-field">
+         <i class="fa fa-phone prefix"></i>
+         <input type="text" name="telephone"  [(ngModel)]="item.telephone">
+       </div>
+
+     </div>
+     <button class="btn orange" (click)="updatedata(item)" >update</button>
+           <button class="btn black" (click)="delete(item.id)" >delete</button>
+    </div>
+
+
+     </li>
+   </ul>
+
+   <ng-template #noContacts>
+     <h5>La Liste est vide !! </h5>
+   </ng-template>
+
+
+</div>

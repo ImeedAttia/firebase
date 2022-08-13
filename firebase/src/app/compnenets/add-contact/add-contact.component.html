@@ -1,0 +1,24 @@
+<div class="row" *ngIf="statusContact" >
+  <div class="col s12">
+    <form (ngSubmit)="newContact()">
+    <div class="row">
+      <div class="input-field col s6">
+        <i class="fa fa-user prefix"></i>
+        <input type="text" name="name" id="" [(ngModel)]="contact.name"><label for="Your Name">Your Name</label>
+      </div>
+      <div class="input-field col s6">
+        <i class="fa-solid fa-plus-large"></i>
+        <input type="text" name="telephone" id=""  [(ngModel)]="contact.telephone"><label for="Your Phone">Your Phone</label>
+      </div>
+    </div>
+    <button class="btn-small" type="submit"> Submit <i class="fa fa-paper-plane-o" aria-hidden="true" ></i>  </button>
+  </form>
+  </div>
+</div>
+
+
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large red waves-effect waves-light" (click)="statusContact = !statusContact" >
+    <i class="fa fa-plus"></i>
+  </a>
+</div>
