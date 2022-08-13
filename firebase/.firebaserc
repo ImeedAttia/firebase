@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "appfirebase-1cf38": {
+      "hosting": {
+        "firebase": [
+          "appfirebase-1cf38"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "appfirebase-1cf38"
+  }
+}

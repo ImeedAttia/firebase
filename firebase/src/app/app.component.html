@@ -1,0 +1,16 @@
+
+hello
+
+<ul>
+  <li *ngFor="let item of item$ | async">
+    {{ item.name}} / {{ item.prenom}} /{{ item.id}}
+    <input type="text" name="hello" #input>
+    <button class="btn btn-warning" (click)="changedata(item.id,input)" >edit</button>
+    <button class="btn btn-danger" (click)="delete(item.id)" >delete</button>
+  </li>
+</ul>
+<button (click)="create() " class="btn btn-success">add</button>
+
+
+
+
