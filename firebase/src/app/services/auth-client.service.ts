@@ -69,9 +69,19 @@ export class AuthClientService {
 
 
   register({ email, password }: LoginData) {
-    return createUserWithEmailAndPassword(this.auth, email, password).then((res) =>{
-      this.sendEmailVerification()
-    });
+    return createUserWithEmailAndPassword(this.auth, email, password)
+    .then((result: any) => {
+      this.UserData = result
+      this.ngZone.run(() => {
+        this.sendEmailVerification()
+        this.router.navigate(['/client']);
+      });
+    })
+    .catch((error) => {
+       alert(error);
+    });;
+
+
   }
 
 

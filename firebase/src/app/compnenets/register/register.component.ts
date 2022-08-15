@@ -10,11 +10,17 @@ import { LoginData } from './../Models/login';
 export class RegisterComponent implements OnInit {
 
   constructor( public authService: AuthClientService) { }
-  login : LoginData = {
-    email : "rezr",
-    password : "ezrazr"
+  LoginData : LoginData = {
+    email : "",
+    password : ""
   }
   ngOnInit(): void {
   }
+  onSubmit() {
+
+    this.authService
+    .register(this.LoginData)
+    .catch((e) => console.log(e.message));
+}
 
 }
