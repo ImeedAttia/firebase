@@ -22,6 +22,7 @@
     "@angular/router": "^14.1.0",
     "awesome": "^0.0.7",
     "bootstrap": "^5.2.0",
+    "flash-messages-angular": "^4.0.1",
     "font": "^0.0.4",
     "font-awesome": "^4.7.0",
     "jquery": "^3.6.0",

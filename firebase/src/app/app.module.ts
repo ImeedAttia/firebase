@@ -13,24 +13,37 @@ import { AddContactComponent } from './compnenets/add-contact/add-contact.compon
 import { MainComponent } from './main/main.component';
 import { ContactService } from './services/contact.service';
 import { FormsModule } from '@angular/forms';
-
+import { LoginComponent } from './compnenets/login/login.component';
+import { RegisterComponent } from './compnenets/register/register.component';
+import { ClientComponent } from './compnenets/client/client.component';
+import { AddClientComponent } from './compnenets/add-client/add-client.component';
+import { ClientService } from 'src/app/services/client.service';
+import { AuthClientService } from './services/auth-client.service';
+import { AuthGuardsGuard } from './guards/auth-guards.guard';
+import { SecureInnerPagesGuard } from './guards/secure-inner-pages.guard';
+import { ProfileComponent } from './compnenets/profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ListContactComponent,
     AddContactComponent,
-    MainComponent
+    MainComponent,
+    LoginComponent,
+    RegisterComponent,
+    ClientComponent,
+    AddClientComponent,
+    ProfileComponent
   ],
   imports: [
-  BrowserModule,
+BrowserModule,
   FormsModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore())
   ],
-  providers: [ContactService],
+  providers: [ContactService,ClientService,AuthClientService,AuthGuardsGuard,SecureInnerPagesGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
