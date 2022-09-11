@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Contact } from '../Models/contact';
@@ -18,7 +19,9 @@ export class ListContactComponent implements OnInit {
     name:'',
     telephone : 0
   };
-  constructor( private readonly cs : ContactService) { }
+
+  entries: string[] = [];
+  constructor( private readonly cs : ContactService,private http: HttpClient) { }
 
   ngOnInit(): void {
     this.cs.getdata().subscribe(c=>{
@@ -44,5 +47,6 @@ export class ListContactComponent implements OnInit {
     this.statusContact = true;
     this.myContact = contact;
    }
+
 }
 

@@ -22,6 +22,13 @@ import { AuthClientService } from './services/auth-client.service';
 import { AuthGuardsGuard } from './guards/auth-guards.guard';
 import { SecureInnerPagesGuard } from './guards/secure-inner-pages.guard';
 import { ProfileComponent } from './compnenets/profile/profile.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { LaoderInterceptor } from './interceptor/laoder.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { InterceptorService } from './services/interceptor.service';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RiotComponent } from './compnenets/riot/riot.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,17 +40,22 @@ import { ProfileComponent } from './compnenets/profile/profile.component';
     RegisterComponent,
     ClientComponent,
     AddClientComponent,
-    ProfileComponent
+    ProfileComponent,
+    RiotComponent
   ],
   imports: [
 BrowserModule,
   FormsModule,
     AppRoutingModule,
+    NgxSpinnerModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
-  providers: [ContactService,ClientService,AuthClientService,AuthGuardsGuard,SecureInnerPagesGuard],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: LaoderInterceptor, multi: true },ContactService,ClientService,AuthClientService,AuthGuardsGuard,SecureInnerPagesGuard,
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

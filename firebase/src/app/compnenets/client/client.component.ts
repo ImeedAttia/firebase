@@ -3,6 +3,7 @@ import Swal from 'sweetalert2'
 import { ClientService } from 'src/app/services/client.service';
 import { Client } from './../Models/client';
 import { AuthClientService } from './../../services/auth-client.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-client',
@@ -11,7 +12,8 @@ import { AuthClientService } from './../../services/auth-client.service';
 })
 export class ClientComponent implements OnInit {
   client :Client[]=[];
-  constructor( private readonly  cs:ClientService,private authService : AuthClientService) { }
+  entries: string[] = [];
+  constructor( private readonly  cs:ClientService,private authService : AuthClientService,private http: HttpClient) { }
  swalWithBootstrapButtons = Swal.mixin({
   customClass: {
     confirmButton: 'btn btn-success',
@@ -66,6 +68,17 @@ export class ClientComponent implements OnInit {
     }
   })
 
+  }
+  launchRequests() {
+    // posts/0 will fail
+    for (let i = 0; i < 100; i++) {
+      this.http
+        .get(`https://jsonplaceholder.typicode.com/posts/${i}`)
+        .subscribe(
+          (post) => this.entries.push(`Received post ${post}`),
+          (error) => this.entries.push('Post request failed')
+        );
+    }
   }
 
 }

@@ -11,6 +11,7 @@ import { AuthGuardsGuard } from './guards/auth-guards.guard';
 import { ClientComponent } from './compnenets/client/client.component';
 import { SecureInnerPagesGuard } from './guards/secure-inner-pages.guard';
 import { ProfileComponent } from './compnenets/profile/profile.component';
+import { RiotComponent } from './compnenets/riot/riot.component';
 
 const routes: Routes = [
   {path : "main" , component: MainComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path : "client" , component: ClientComponent, canActivate: [AuthGuardsGuard]},
   {path : "client/add" , component: AddClientComponent},
   {path : "profile" , component: ProfileComponent, canActivate: [AuthGuardsGuard]},
+  {path : "riot" , component: RiotComponent},
 
 
 ];

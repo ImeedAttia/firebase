@@ -50,9 +50,16 @@ export class AuthClientService {
        alert(error);
     });;
   }
+
+
+
+
   getAuthFire(){
     return this.auth.currentUser;
   }
+
+
+
   getAuthLocal(){
     const token = localStorage.getItem('user')
     const user = JSON.parse(token as string);
@@ -93,7 +100,7 @@ export class AuthClientService {
 
 
   GoogleAuth() {
-    return this.loginWithGoogle(new GoogleAuthProvider());
+    return this.loginWithGoogle(new GoogleAuthProvider().addScope('https://www.googleapis.com/auth/contacts.readonly'));
   }
 
 
@@ -105,7 +112,7 @@ export class AuthClientService {
       //const token = credential?.accessToken;
       // The signed-in user info.
       this.UserData =  result.user;
-      this.router.navigate(['/client'])
+      console.log(this.UserData)
       // ...
     }).catch((error) => {
       // Handle Errors here.
@@ -120,17 +127,13 @@ export class AuthClientService {
     });
   }
  async  sendPasswordResetEmails(email : string){
-
     return sendPasswordResetEmail(this.auth,email);
-
-
   }
 
 
 
   sendEmailVerification(){
     return sendEmailVerification(this.auth.currentUser as User);
-
   }
 
 
